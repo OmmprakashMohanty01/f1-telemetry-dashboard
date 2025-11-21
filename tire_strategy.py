@@ -29,3 +29,15 @@ def estimate_tire_wear(
         * (tire_condition / 100)
     )
     return max(0, tire_wear * 100)
+
+
+def calculate_avg_laps_per_degradation(laps_total, tire_degradation_values):
+    return sum(
+        laps_completed
+        for laps_completed, tire_degradation in zip(laps_total, tire_degradation_values)
+        if tire_degradation > 0
+    ) / sum(
+        1
+        for laps_completed, tire_degradation in zip(laps_total, tire_degradation_values)
+        if tire_degradation > 0
+    )
