@@ -41,3 +41,11 @@ def calculate_avg_laps_per_degradation(laps_total, tire_degradation_values):
         for laps_completed, tire_degradation in zip(laps_total, tire_degradation_values)
         if tire_degradation > 0
     )
+
+
+def calculate_degradation_over_time(tire_degradation_intervals, intervals_duration):
+    return sum(
+        laps_total[i] - laps_total[i - 1]
+        for i, laps_completed in enumerate(laps_total)
+        if i > 0 and tire_degradation_intervals[i - 1] > 0
+    ) / sum(intervals_duration[i] for i in range(1, len(intervals_duration)))
