@@ -68,3 +68,8 @@ driver_id = "DRIVER_ID"
 live_telemetry = client.fetch_live_telemetry(session_id)
 lap_times = client.fetch_lap_times(session_id)
 lap_data = client.fetch_lap_data(session_id, driver_id)
+
+
+class TelemetryAPIClient:
+    def fetch_driver_status(self, driver_id):
+        return self.api.get_driver_status(driver_id)
