@@ -14,3 +14,10 @@ def compare_sector_times(sector_times_1, sector_times_2):
         performance_delta.append(delta)
 
     return performance_delta
+
+
+def calculate_total_performance_delta(performance_deltas: List[float]):
+    if not performance_deltas:
+        raise ValueError("List of performance deltas cannot be empty")
+
+    return sum(performance_deltas) / len(performance_deltas)
