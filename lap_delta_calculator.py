@@ -21,3 +21,10 @@ def calculate_total_performance_delta(performance_deltas: List[float]):
         raise ValueError("List of performance deltas cannot be empty")
 
     return sum(performance_deltas) / len(performance_deltas)
+
+
+def calculate_sector_average_speed(sector_times: List[float]) -> float:
+    if not sector_times:
+        raise ValueError("List of sector times cannot be empty")
+
+    return sum(sector_times) / len(sector_times)
