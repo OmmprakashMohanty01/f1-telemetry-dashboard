@@ -49,3 +49,25 @@ def calculate_degradation_over_time(tire_degradation_intervals, intervals_durati
         for i, laps_completed in enumerate(laps_total)
         if i > 0 and tire_degradation_intervals[i - 1] > 0
     ) / sum(intervals_duration[i] for i in range(1, len(intervals_duration)))
+
+
+def calculate_tire_degradation_threshold(
+    tire_degradation_values, threshold_percentages
+):
+    return [
+        sum(
+            laps_completed
+            for laps_completed, tire_degradation in zip(
+                laps_total, tire_degradation_values
+            )
+            if tire_degradation / 100 > percentage
+        )
+        / sum(
+            1
+            for laps_completed, tire_degradation in zip(
+                laps_total, tire_degradation_values
+            )
+            if tire_degradation > 0
+        )
+        for percentage in threshold_percentages
+    ]
