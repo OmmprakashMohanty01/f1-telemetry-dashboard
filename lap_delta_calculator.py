@@ -28,3 +28,31 @@ def calculate_sector_average_speed(sector_times: List[float]) -> float:
         raise ValueError("List of sector times cannot be empty")
 
     return sum(sector_times) / len(sector_times)
+
+
+from typing import List
+
+
+def calculate_lap_average_speed(total_sector_times: List[List[float]]) -> float:
+    def calculate_sector_average_speed(sector_times: List[float]) -> float:
+        sector_time_sum = sum(sector_times)
+        sector_time_count = len(sector_times)
+
+        if sector_time_count == 0:
+            raise ValueError("List of sector times cannot be empty")
+
+        return sector_time_sum / sector_time_count
+
+    lap_average_speed = 0
+    lap_sector_time_sum = 0
+    lap_sector_time_count = 0
+    for sector_times in total_sector_times:
+        lap_sector_average_speed = calculate_sector_average_speed(sector_times)
+        lap_average_speed += lap_sector_average_speed
+        lap_sector_time_sum += sector_times[-1]
+        lap_sector_time_count += 1
+
+    if lap_sector_time_count == 0:
+        raise ValueError("List of sector times cannot be empty")
+
+    return lap_average_speed / lap_sector_time_count
