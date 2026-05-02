@@ -73,3 +73,16 @@ lap_data = client.fetch_lap_data(session_id, driver_id)
 class TelemetryAPIClient:
     def fetch_driver_status(self, driver_id):
         return self.api.get_driver_status(driver_id)
+
+
+class DriverAPIClient:
+    def fetch_driver_history(self, driver_id):
+        return self.api.get_driver_history(driver_id)
+
+
+class EventAPIClient:
+    def fetch_event_schedule(self, event_id):
+        return self.api.get_event_schedule(event_id)
+
+    def fetch_event_results(self, event_id):
+        return self.api.get_event_results(event_id)
